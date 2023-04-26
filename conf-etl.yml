@@ -10,6 +10,10 @@ source:
   type: pulsar
   id: source01
 
+## choose processor
+process:
+  id: 
+
 ## choose where to sink
 sink: 
   type: vm

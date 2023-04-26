@@ -7,7 +7,9 @@ import (
 	"regexp"
 )
 
-func StartProcess() {
+type LabelProcess struct {}
+
+func (p LabelProcess) StartProcess() {
 	for msg := range common.PreProcessChan {
 		pmsg := processStructKeyMsg(msg, common.Config)
 		if (pmsg != nil) {

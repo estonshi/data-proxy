@@ -60,7 +60,16 @@ func main() {
 	}
 
 	// start process goroutine
-	go process.StartProcess()
+	var processor common.Processor
+	switch config.Process.Id {
+	case "", "empty":
+		log.Printf("Process: empty")
+		processor = process.EmptyProcess{}
+	case "label":
+		log.Printf("Process: label")
+		processor = process.LabelProcess{}
+	}
+	go processor.StartProcess()
 	
 	// start source goroutine
 	switch config.Source.Type {

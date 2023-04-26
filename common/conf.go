@@ -15,6 +15,10 @@ type Source struct {
 	Type string `yaml:"type"`
 }
 
+type Process struct {
+	Id   string `yaml:"id"`
+}
+
 type Sink struct {
 	Id   string `yaml:"id"`
 	Type string `yaml:"type"`
@@ -56,6 +60,7 @@ type Conf struct {
 	Port       int                   `yaml:"port"`
 	ChanBuff   int                   `yaml:"chanbuffer"`
 	Source     Source                `yaml:"source"`
+	Process    Process               `yaml:"process"`
 	Sink       Sink                  `yaml:"sink"`
 	PulsarConf map[string]PulsarConf `yaml:"pulsar"`
 	KafkaConf  map[string]KafkaConf  `yaml:"kafka"`
