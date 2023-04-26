@@ -1,0 +1,43 @@
+
+## port
+port: 9423
+
+## channel buffer size, which determines the memory cost of program
+chanbuffer: 10000
+
+## choose data source
+source: 
+  type: pulsar
+  id: source01
+
+## choose where to sink
+sink: 
+  type: vm
+  id: sink01
+
+## pulsar config
+pulsar:
+  source01:
+    serviceUrl: pulsar://192.168.179.62:6650,pulsar://192.168.179.63:6650
+    auth:
+      jwt-token: eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJ1c2VyIn0.QbSh6qUG_yQN7vNcRkk4_8C2nXw5ions_G29qmZXW1BXifaamSowCNHTt1pPgh1RoFlu7xzuZ2K0NCfi9Q7a1-hybMWokr-Z06DlzVx48HS3qjZ7hwNv1QOU5EkfVNekqI-zRj6ROioMIoEGliwrOM8M-Eu-EClKYt1zrRFwnETkNZml_DU1O5GRPF1pEq_BZcpoX-NbFKXPf8Doh8ko6Lw2Z8qsr40H4McGBzPw4Q-b56Rr4_OEgas7U_UNWCLvsiHuDBpW6Jbmjl6iNckG7WeiOyLL8xi2KNVyQSjYMz8G0ko1qraBH5NQfepiqnFTOfek4nTL4eZ6WLXiThC19g 
+    data_topics: persistent://tenant/namespace/topic-.+
+    subscription: data-proxy
+
+vm:
+  sink01:
+    serviceUrl: http://192.168.179.61:8427/insert/0/prometheus  # for standalone victoriametrics, use 'http://192.168.179.61:8428'
+    auth:
+      basic-token: Basic dGVzdDp0ZXN0
+    timeout: 5
+
+## kafka config
+# kafka:
+#   source-kafka:
+#     brokers: 192.168.179.61:9092,192.168.179.62:9092
+#     data_topic: test_topic
+#     consumer_group: data-proxy
+#     auth:
+#       algo: scram.SHA512
+#       username: user
+#       password: pwd

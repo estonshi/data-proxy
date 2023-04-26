@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  data-proxy:
+    image: data-proxy:latest
+    build:
+      context: ./ 
+      dockerfile: Dockerfile
+    command: -c /etc/conf-vmagent-sidecar.yml
+    ports:
+      - 9423:9423
+    hostname: "data-proxy"
+    volumes:
+      - ./conf-vmagent-sidecar.yml:/etc/conf-vmagent-sidecar.yml
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          memory: 512m

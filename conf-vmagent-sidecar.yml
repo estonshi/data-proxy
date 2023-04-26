@@ -1,0 +1,34 @@
+
+## port
+port: 9423
+
+## channel buffer size, which determines the memory cost of program
+chanbuffer: 10000
+
+## choose where to sink
+sink: 
+  type: kafka
+  id: sink-kafka
+
+## pulsar config
+# pulsar:
+#   sink-pulsar:
+#     serviceUrl: pulsar://192.168.179.62:6650,pulsar://192.168.179.63:6650
+#     auth:
+#       jwt-token: eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJwcm9kdWNlciJ9.V6esPxZfUp4tFSeZZdjFRyUsBJIH3f0wLmMGUqpWNTqaZnP9MA-wQzpu0af_pGKlVl_QFyyWsbJlbdB670Z5gUSonBsuv_096myX0KdwxwccGy9sDvUzvBqecvTaTajFBC9lsxDxv_D4MHDqOGVikOcJzkkdydVZ-ENT-dNdRl4MRRPkmOLNV-Rqfc9hm1wDoIB-Yq0lgOz1EE2oXtCtr0sQuG_Ic9wUoAi1swaPHu2SV4VFgECPnWgnb5LNRHEiiwQv3Yq-Du20zlqJtESD_9hEgSym68JqeIWAUIWhReIbh1k0luU3tFA2KMyWnp9vtf5m2L7XbLNJs1qUr_h85g
+#     data_topics: persistent://tenant/namespace/topic-001
+
+## kafka config
+kafka:
+  sink-kafka:
+    brokers: 192.168.179.61:9092,192.168.179.63:9092
+    data_topic: test_topic
+    auth:
+      algo: scram.SHA512
+      username: user
+      password: pwd
+
+## remote-write api switch
+remoteApi:
+  prometheus:
+    enabled: true
